@@ -14,6 +14,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,12 +35,21 @@ public class Employee {
 	@Schema(description = "Employee code , Unique identification of an employee")
 	private int empCode;
 	
+	@NotBlank(message = "Employee name cannot be blank")
+	@Size(min = 2,max = 30 , message = "name should be 2 to 50 char long")
 	private String empName;
+	
 	@Schema(description = "Value [java , SFDC , AWS]")
+	@Size(min = 5,max = 30 , message = "techname should be 2 to 50 char long")
 	private String techName;
+	
 	@Schema(description = "Value [developer , associate , consultant, Project Manager]")
+	@NotBlank(message = "Designation cannot be blank")
+	@Size(min = 5,max = 30 , message = "designation name should be 2 to 50 char long")
 	private String designation;
 	
+	@Min(value = 1000, message = "Salary must be more than 1000")
+    @Max(value = 15000, message = "Salary cannot be more than 15000")
 	private int salary;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)

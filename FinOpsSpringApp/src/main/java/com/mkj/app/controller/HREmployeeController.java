@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,10 +26,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/hr")
 @Tag(name = "Employee Entity", description = "Operations related to Employee")
+@Validated
 public class HREmployeeController {
 
 	@Autowired
@@ -39,7 +42,7 @@ public class HREmployeeController {
 	}
 
 	@PostMapping("/employee")
-	public String insertEmployee(@RequestBody Employee employee) {
+	public String insertEmployee(@Valid @RequestBody Employee employee) {
 
 		String str = hrService.saveEmployee(employee);
 
