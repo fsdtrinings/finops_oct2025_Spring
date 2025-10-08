@@ -3,6 +3,9 @@ package com.mkj.app.service.hrservice;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +31,18 @@ public class ProjectServiceImpl implements ProjectService
 	
 		return "project Saved : code "+savedProject.getPcode();
 	}
+
+	
+	@Override						//     pageNumber11 ,   10 pages
+	public Page<Project> getAllProjects(int pageNumber,int size) 
+	{
+		Pageable pageable = PageRequest.of(pageNumber, size);
+		Page<Project> tenPages = proRepo.findAll(pageable);
+		                   // proRepo.findbyDesignation(designationName,pageableObj)
+		return tenPages;
+	}
+
+
 
 	@Override
 	public Project extractProjectByCode(int pcode) {

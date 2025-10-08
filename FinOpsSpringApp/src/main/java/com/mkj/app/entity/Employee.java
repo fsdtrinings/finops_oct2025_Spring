@@ -17,6 +17,8 @@ import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +37,7 @@ public class Employee {
 	@Schema(description = "Employee code , Unique identification of an employee")
 	private int empCode;
 	
+	//@NotEmpty
 	@NotBlank(message = "Employee name cannot be blank")
 	@Size(min = 2,max = 30 , message = "name should be 2 to 50 char long")
 	private String empName;
@@ -48,6 +51,7 @@ public class Employee {
 	@Size(min = 5,max = 30 , message = "designation name should be 2 to 50 char long")
 	private String designation;
 	
+	//@Pattern(regexp = "")
 	@Min(value = 1000, message = "Salary must be more than 1000")
     @Max(value = 15000, message = "Salary cannot be more than 15000")
 	private int salary;

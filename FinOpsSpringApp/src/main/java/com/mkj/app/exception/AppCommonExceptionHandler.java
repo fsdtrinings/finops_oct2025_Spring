@@ -14,12 +14,33 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class AppCommonExceptionHandler {
 
+	
+	@ExceptionHandler
+	public ResponseEntity<ExceptionResponse> 
+			sendingResponseToNullPointerException(NullPointerException exp)
+	
+	{
+		
+		/*
+		 *  create response
+		 * 
+		 * */
+		System.out.println("Null Pointer Object ");
+		ExceptionResponse resp = new ExceptionResponse();
+		resp.setErrorMsg(exp.toString());
+		resp.setIssueSrc(exp.getStackTrace()[0].getMethodName()+"");
+		resp.setNow(LocalDateTime.now());
+		
+		
+		
+		return new ResponseEntity<ExceptionResponse>(resp,HttpStatusCode.valueOf(500));
+	}
+	
+	
+	
 	@ExceptionHandler
 	public ResponseEntity<ExceptionResponse> 
 			sendingResponseToInvalidDocuments(InvalidDocumentidException exp)
-	
-	
-	
 	
 	{
 		
@@ -39,7 +60,7 @@ public class AppCommonExceptionHandler {
 	}
 	
 	
-	
+ 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ExceptionResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
 

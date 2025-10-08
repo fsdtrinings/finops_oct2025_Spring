@@ -1,5 +1,8 @@
 package com.mkj.app.service.hrservice;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.mkj.app.entity.Project;
@@ -8,6 +11,7 @@ import com.mkj.app.entity.Project;
 public interface ProjectService {
 
 	public String createProject(Project project);
+	public Page<Project> getAllProjects(int pageNumber,int size); 
 	public Project extractProjectByCode(int pcode);
 	public String linkEmployeeWithProject(int pcode,int empCode);
 	

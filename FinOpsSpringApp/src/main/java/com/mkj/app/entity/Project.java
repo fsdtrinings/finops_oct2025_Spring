@@ -33,6 +33,12 @@ public class Project {
 	@OneToMany(mappedBy = "project",cascade = CascadeType.ALL)
 	private List<Employee> allEmployees;
 
+	public Project(String projectName, String client) {
+		super();
+		this.projectName = projectName;
+		this.client = client;
+	}
+
 	
 	
 

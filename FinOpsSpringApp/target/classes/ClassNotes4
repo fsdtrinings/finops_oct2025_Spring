@@ -1,0 +1,16 @@
+
+Pageination 
+    1) Pageable 
+    2) Page 
+    
+    
+    Page<Entity> records = _________
+    
+    Step 1 : List<Entity> Repository which gives us heavy list
+    
+    Step 2 :  Service layer
+    			implement Page thing in Service 
+    
+    Step 3 :  In Controller class
+    			create endpoint 
+    	      providing page size and starting page number

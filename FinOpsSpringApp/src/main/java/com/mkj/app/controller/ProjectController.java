@@ -1,6 +1,9 @@
 package com.mkj.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +36,21 @@ public class ProjectController {
 		System.out.println("-->> Project create : "+p);
 		return projectService.createProject(p);
 	}
+	
+	// localhost:8085/pm/projects?page=1&size=10
+	@GetMapping("/projects")
+	public ResponseEntity<Page<Project>> getAllProjects(
+			@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size
+			)
+	{
+		Page<Project>  allPageRecords = projectService.getAllProjects(page, size);
+		return new ResponseEntity<Page<Project>>(allPageRecords,HttpStatus.OK);
+	}
+	
+	
+	
+	
 	
 	@GetMapping("/project/{code}")
 	public Project getProjectbyCode(@PathVariable int code)
