@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mkj.app.dto.EmployeeDTO;
+import com.mkj.app.dto.EmployeeProjectClientDTO;
 import com.mkj.app.entity.Employee;
 import com.mkj.app.entity.Project;
 import com.mkj.app.repository.hrrepo.HREmployeeRepository;
@@ -65,6 +67,24 @@ public class ProjectServiceImpl implements ProjectService
 		
 	}
 
+
+	@Override
+	public List<EmployeeProjectClientDTO> extractEmployeeLinkedWithProjectClientName() {
+	
+		return proRepo.extractEmployeeLinkedWithProjectClientName();
+	
+	}
+
+
+	@Override
+	public List<EmployeeProjectClientDTO> doThings() {
+		
+		return proRepo.mySQLNativeQuery();
+	}
+
+	
+	
+	
 	
 }//end class
 
